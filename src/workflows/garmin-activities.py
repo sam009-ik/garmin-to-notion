@@ -8,7 +8,7 @@ from notion_client import Client as NotionClient
 from src.helpers import get_garmin_client, get_notion_client
 
 # Your local time zone, replace with the appropriate one if needed
-local_tz = pytz.timezone('America/Toronto')
+local_tz = pytz.timezone('Asia/Kolkata')
 
 ACTIVITY_ICONS = {
     "Barre": "https://img.icons8.com/?size=100&id=66924&format=png&color=000000",
@@ -78,6 +78,14 @@ def format_activity_type(activity_type: str, activity_name: str = "") -> tuple[s
     if activity_name and "stretch" in activity_name.lower():
         return "Stretching", "Stretching"
 
+    KNOWN_TYPES = {
+        "Breathwork", "Relaxation", "Cardio", "Cycling", "Hiking", "Rowing",
+        "Running", "Strength", "Stretching", "Swimming", "Walking",
+        "Yoga/Pilates", "Meditation", "Other",
+    }
+    if activity_type not in KNOWN_TYPES:
+        activity_subtype = activity_type
+        activity_type = "Other"
     return activity_type, activity_subtype
 
 
