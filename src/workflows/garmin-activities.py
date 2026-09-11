@@ -78,14 +78,6 @@ def format_activity_type(activity_type: str, activity_name: str = "") -> tuple[s
     if activity_name and "stretch" in activity_name.lower():
         return "Stretching", "Stretching"
 
-    KNOWN_TYPES = {
-        "Breathwork", "Relaxation", "Cardio", "Cycling", "Hiking", "Rowing",
-        "Running", "Strength", "Stretching", "Swimming", "Walking",
-        "Yoga/Pilates", "Meditation", "Other",
-    }
-    if activity_type not in KNOWN_TYPES:
-        activity_subtype = activity_type
-        activity_type = "Other"
     return activity_type, activity_subtype
 
 
